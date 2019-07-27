@@ -1,0 +1,19 @@
+<br>
+<br>
+<br>
+<h1 style="color:red;text-align: center">Item in Cart</h1>
+<div id="cart" *ngIf="bookCart != null">
+<jqxGrid [theme]="'material'" style="margin-left: auto;margin-right: auto"
+    [width]="getWidth()" [source]="dataAdapter" [columns]="columns"
+    [pageable]="false" [autoheight]="true" [sortable]="true" 
+    [altrows]="false"  [enabletooltips]="true"  [editable]="false" 
+    [selectionmode]="'multiplecellsadvanced'" [columngroups]="columngroups">
+</jqxGrid>
+</div>
+<br>
+<div style="text-align: center" *ngIf="bookCart != null">
+  <input type="button" class="btn-primary" (click)="AddToCart()" value="Buy">
+  </div>
+  <div *ngIf="bookCart == null">
+    <h3 style="text-align: center;color:red">No Item Found in Cart</h3>
+  </div>

@@ -1,0 +1,27 @@
+<br>
+<br>
+<br>
+<div class="form-style-2">
+    <div class="form-style-2-heading">Payment Information</div>
+    <div style="color:#ff0000;font-size: 15px" *ngIf="errorMessage!=''">
+            <span>
+            {{errorMessage}}
+        <button type="button" class="close" aria-label="Close" (click)="removeMessage()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </span> 
+     </div>
+    <form [formGroup]="paymentform" (ngSubmit)="onSubmit()">
+    <label for="firstName"><span>First Name <span class="required">*</span></span><input type="text" class="input-field" name="firstName" formControlName="firstName" value="" [appAlphabetonly]=true/></label>
+    <label for="lastName"><span>Last Name <span class="required">*</span></span><input type="text" class="input-field" name="lastName"  formControlName="lastName" value="" [appAlphabetonly]=true/></label>
+    <label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" formControlName="email" value="" /></label>
+    <label><span>Mobile No</span><input type="text" class="tel-number-field1" name="tel_no_1" value="+91" maxlength="3" readonly/>-<input type="text" class="tel-number-field" name="tel_no_3" formControlName="mobileNo" value="" [appNumberonly]=true/></label>
+    <label for="country"><span>Country<span class="required">*</span></span><input type="text" class="input-field" name="country" value="" formControlName="country" [appAlphabetonly]=true/></label>
+    <label for="state"><span>State<span class="required">*</span></span><input type="text" class="input-field" name="state" formControlName="state" value="" [appAlphabetonly]=true/></label>
+    <label for="city"><span>City<span class="required">*</span></span><input type="text" class="input-field" name="city" value="" formControlName="city" [appAlphabetonly]=true/></label>
+    <label for="address1"><span>Address 1 <span class="required">*</span></span><textarea name="address1" class="textarea-field" formControlName="address1" ></textarea></label>
+    <label for="address2"><span>Address 2 <span class="required">*</span></span><textarea name="address2" class="textarea-field" formControlName="address2"></textarea></label>
+    <label for="zipcode"><span>Zipcode<span class="required">*</span></span><input type="text" class="input-field" name="zipcode" value="" formControlName="zipcode" [appNumberonly]=true/></label>
+    <label><span> </span><input type="submit" value="Submit" /></label>
+    </form>
+    </div>

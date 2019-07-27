@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Are you sure?</h2>
+<mat-dialog-content>
+  {{message}}
+</mat-dialog-content>
+ <div mat-dialog-actions>
+   <div *ngIf=!showOk>
+    <button class="mat-raised-button mat-primary" (click)="onYesClick()" cdkFocusInitial>Yes</button>
+   <button class="mat-raised-button"  (click)="onNoClick()">No</button>
+  </div>
+  <div *ngIf=showOk>
+      <button class="mat-raised-button mat-primary" (click)="onYesClick()" cdkFocusInitial>Ok</button>
+  </div>
+ </div>

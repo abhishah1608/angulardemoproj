@@ -1,0 +1,42 @@
+<div style="text-align: center">
+<h1>
+  Payment Status
+</h1>
+<h3>{{header}}</h3>
+<br/><br>
+<div id="cart">
+  <table align="center" border="1">
+    <thead></thead>
+    <td style="padding: 0 25px 0 25px;">
+      Book Name
+    </td>
+    <td style="padding: 0 25px 0 25px;">
+      Quantity
+    </td>
+    <td style="padding: 0 25px 0 25px;">
+      Total Price
+    </td>
+    <tbody>
+        <tr *ngFor="let x of Bookdetail"> 
+        <td style="padding: 0 25px 0 25px;">
+         {{x.BookName}}
+        </td>
+        <td style="padding: 0 25px 0 25px;">
+            {{x.Quantity}}
+        </td>
+        <td style="padding: 0 25px 0 25px;"> 
+          {{x.total | currency: 'INR'}}
+        </td>
+        </tr>
+        <tr>
+          <td colspan="3">
+            <br>Total Amount : {{amount | currency:'INR'}}
+          </td>
+        </tr>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  </div>
+</div>
+

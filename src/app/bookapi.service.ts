@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BookapiService {
 
-  url : string = "http://localhost:54701/api/Book/";
+  url : string = "http://demoangularapp.gear.host/api/Book/";
 
   constructor(private httpclient:HttpClient) { }
   

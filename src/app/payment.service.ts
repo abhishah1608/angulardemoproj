@@ -9,7 +9,7 @@ import { PaymentInfo } from './payment-info';
 })
 export class PaymentService {
 
-  url : string = "http://localhost:54701/api/Payment/";
+  url : string = "http://demoangularapp.gear.host/api/Book/api/Payment/";
 
   constructor(private httpclient: HttpClient) { }
 

@@ -14,7 +14,7 @@ import { UserAddClass } from './user-add-class';
 })
 export class LoginService {
 
-  url : string = "http://localhost:54701/api/Login/";
+  url : string = "http://demoangularapp.gear.host/api/Book/api/Login/";
 
   constructor(private httpclient: HttpClient,private dialog:MatDialog,private config:MatDialogConfig,private router:Router,private route:ActivatedRoute) { }
 

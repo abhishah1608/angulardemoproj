@@ -15,7 +15,7 @@ export class CartItemComponent implements OnInit {
 
   bindvalue : string = null;
 
-  url : string = "http://demoangularapp.gear.host/api/Book/";
+  url : string = "https://demoangularapp.gear.host/api/Book/";
 
   dataAdapter: any;
 

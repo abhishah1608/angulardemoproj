@@ -66,7 +66,7 @@ export class PaymentStatusComponent implements OnInit {
         email.body = body;
         email.To = sessionStorage.getItem("email");
         email.OrderId = d.OrderId;
-        let urladdress = "http://demoangularapp.gear.host/api/Email/SendEmail";
+        let urladdress = "https://demoangularapp.gear.host/api/Email/SendEmail";
 
         this.http.post(urladdress,email,httpOptions).subscribe((data1)=>{
             

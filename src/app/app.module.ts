@@ -29,6 +29,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { PaymentStatusComponent } from './payment-status/payment-status.component';
 import { NumberonlyDirective } from './numberonly.directive';
 import { AlphabetonlyDirective } from './alphabetonly.directive';
+import { HistoryComponent } from './history/history.component';
 
 
 const appRoutes : Routes = [ 
@@ -53,6 +54,9 @@ const appRoutes : Routes = [
            },
            {
             path:'paymentStatus/:PayuMoneyId', component:PaymentStatusComponent     
+           },
+           {
+            path:'CartHistory', component:HistoryComponent
            }
         ]
        },
@@ -77,7 +81,8 @@ const appRoutes : Routes = [
     PaymentStatusComponent,
     jqxGridComponent,
     NumberonlyDirective,
-    AlphabetonlyDirective
+    AlphabetonlyDirective,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

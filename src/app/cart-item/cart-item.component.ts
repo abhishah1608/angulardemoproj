@@ -15,6 +15,10 @@ export class CartItemComponent implements OnInit {
 
   bindvalue : string = null;
 
+  localize : any = {
+    currencysymbol : "₹", 
+  }
+
   url : string = "https://demoangularapp.gear.host/api/Book/";
 
   dataAdapter: any;

@@ -31,6 +31,9 @@ export class PaymentStatusComponent implements OnInit {
 
   ngOnInit() {
 
+     
+    sessionStorage.setItem("Cart",null);
+
     this.payumoneyId = +this.route.snapshot.paramMap.get("PayuMoneyId");
         
     this.paymentservice.GetPaymentStatus(this.payumoneyId).subscribe((data)=>{
@@ -67,7 +70,7 @@ export class PaymentStatusComponent implements OnInit {
         email.To = sessionStorage.getItem("email");
         email.OrderId = d.OrderId;
         let urladdress = "https://demoangularapp.gear.host/api/Email/SendEmail";
-
+         
         this.http.post(urladdress,email,httpOptions).subscribe((data1)=>{
             
         });

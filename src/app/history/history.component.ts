@@ -10,7 +10,7 @@ import { HistoryInfo } from '../history-info';
 })
 export class HistoryComponent implements OnInit {
 
-  url : string = "http://localhost:54701/api/History/";
+  url : string = "https://demoangularapp.gear.host/api/History/";
 
   historyinfo : HistoryInfo = null;
 

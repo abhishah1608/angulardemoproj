@@ -28,6 +28,8 @@
     "angular2-moment": "^1.9.0",
     "bootstrap": "^4.3.1",
     "chart.js": "^2.8.0",
+    "devextreme": "^19.1.5",
+    "devextreme-angular": "^19.1.5",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
     "jqwidgets-scripts": "^8.1.4",

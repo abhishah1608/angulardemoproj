@@ -5,6 +5,7 @@ import { Book } from '../book';
 import { BookAddedInCart } from '../book-added-in-cart';
 import { SessiontimeoutService } from '../sessiontimeout.service';
 
+
 @Component({
   selector: 'app-booklist',
   templateUrl: './booklist.component.html',
@@ -32,6 +33,8 @@ export class BooklistComponent implements OnInit {
     }
     this.bookCart.UserId = Number(sessionStorage.getItem("UserId"));
     this.bookCart.LoginId = Number(sessionStorage.getItem("sessionId"));
+    this.onAddClick = this.onAddClick.bind(this);
+    this.onRemoveClick = this.onRemoveClick.bind(this);
   }
 
   ngOnInit() {
@@ -53,7 +56,7 @@ export class BooklistComponent implements OnInit {
 
   
 
-  AddItemToCart(book: Book) : void
+  AddItemToCart(book: Book)
   {
       let bookdetail = this.IsBookAvailableInCart(book.BookId);
        
@@ -103,5 +106,27 @@ export class BooklistComponent implements OnInit {
     }
     sessionStorage.setItem("Cart", JSON.stringify(this.bookCart));
     sessionStorage.setItem("Books",JSON.stringify(this.books));
-  }   
+  }
+  
+  onAddClick(e:any)
+  {
+      e.event.preventDefault();
+      let b : Book= e.row.data as Book;
+      this.AddItemToCart(b);  
+  }
+  
+  onRemoveClick(e:any)
+  {
+    e.event.preventDefault();
+    let b : Book= e.row.data as Book;
+     this.RemoveItemFromCart(b);
+  }
+
+  editorPreparing(e:any)
+  {
+    console.log("e:"+ e.rowElement);
+    if(e.dataField === "Description") {
+         e.editorName = "dxTextArea";
+      }
+  }
 }

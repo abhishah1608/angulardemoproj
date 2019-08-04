@@ -11,6 +11,7 @@ import { GrowlModule } from 'primeng/primeng';
 import { MatDialogModule,MatDialogConfig } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { jqxGridComponent } from 'jqwidgets-scripts/jqwidgets-ts/angular_jqxgrid';
+import {DxDataGridModule} from 'devextreme-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -98,7 +99,8 @@ const appRoutes : Routes = [
     NgIdleKeepaliveModule.forRoot(),
     NgbModule.forRoot(),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    DxDataGridModule
   ],
   providers: [MatDialogConfig],
   entryComponents : [ModalpopupComponent,ConfirmdialogComponent],

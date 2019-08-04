@@ -45,22 +45,12 @@ export class CartItemComponent implements OnInit {
      this.dataAdapter = new jqx.dataAdapter(this.source);
   }
 
+  //method redirect to payment details screen to get payment detail of customer.
   AddToCart() {
     var bRetval : boolean = false;
-    let urlpath = this.url + "AddOrder";    
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Accept': 'application/json',
-      'Access-Control-Allow-Methods': '*',
-      'Access-Control-Allow-Headers': '*'})
-    };
-
-    this.http.post(urlpath,this.bookCart,httpOptions).subscribe((data)=>{ 
-         let body : string = document.getElementById("cart").innerHTML;
-         sessionStorage.setItem("body",body);
-        this.router.navigate(['app/payment']); 
-    });
+    let body : string = document.getElementById("cart").innerHTML;
+    sessionStorage.setItem("body",body);
+    this.router.navigate(['app/payment']);
     return  bRetval;
   }
 

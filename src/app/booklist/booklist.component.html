@@ -7,15 +7,15 @@
 <dx-data-grid id="gridContainer" [showBorders]="true" [dataSource]="books"  [remoteOperations]="true" [showColumnLines]="true" 
 [showRowLines]="false" [columnAutoWidth]="true" (onRowPrepared)="editorPreparing($event)">
 <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
-    <dxi-column dataField="BookName"  [width]="14+'%'"></dxi-column>
-    <dxi-column dataField="BookAuthor"  [width]="14+'%'"></dxi-column>
-    <dxi-column dataField="Description"  [width]="50+'%'"></dxi-column>
+    <dxi-column dataField="BookName"  [width]="16+'%'"></dxi-column>
+    <dxi-column dataField="BookAuthor"  [width]="16+'%'"></dxi-column>
+    <dxi-column dataField="Description"  [width]="20+'%'"></dxi-column>
     <dxi-column dataField="stock"  [width]="08+'%'"></dxi-column>
-    <dxi-column dataField="BookPrice" format="currency"  [width]="12+'%'"></dxi-column>
-    <dxi-column type="buttons" [width]="05+'%'" caption="Add">
+    <dxi-column dataField="BookPrice" [width]="12+'%'"></dxi-column>
+    <dxi-column type="buttons" [width]="08+'%'" caption="Add">
         <dxi-button name="Add" [onClick]="onAddClick" icon="plus" hint="Add"></dxi-button>
     </dxi-column>
-    <dxi-column type="buttons" [width]="06+'%'" caption="Remove">
+    <dxi-column type="buttons" [width]="08+'%'" caption="Remove">
         <dxi-button name="Remove" [onClick]="onRemoveClick" icon="fa fa-minus" hint="Remove"></dxi-button>
     </dxi-column>
 </dx-data-grid>

@@ -5,6 +5,7 @@ import { BookDetails } from '../book-details';
 import { PaymentInfo } from '../payment-info';
 import { SendEmail } from '../send-email';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { BookAddedInCart } from '../book-added-in-cart';
 
 @Component({
   selector: 'app-payment-status',
@@ -25,6 +26,8 @@ export class PaymentStatusComponent implements OnInit {
 
   orderId : string;
 
+  bookCart : BookAddedInCart;
+
   constructor(private route: ActivatedRoute, private paymentservice:PaymentService,private http:HttpClient) { 
     
   }
@@ -32,7 +35,7 @@ export class PaymentStatusComponent implements OnInit {
   ngOnInit() {
 
      
-    sessionStorage.setItem("Cart",null);
+    
 
     this.payumoneyId = +this.route.snapshot.paramMap.get("PayuMoneyId");
         
@@ -74,6 +77,16 @@ export class PaymentStatusComponent implements OnInit {
         this.http.post(urladdress,email,httpOptions).subscribe((data1)=>{
             
         });
+        //on success add order in purchase table as successful order placed.
+        let urlpath = "https://demoangularapp.gear.host/api/Book/" + "AddOrder";
+        let bookcart  = sessionStorage.getItem("Cart"); 
+        console.log("bookcart"+bookcart);
+        this.bookCart = JSON.parse(bookcart);
+        
+        this.http.post(urlpath,this.bookCart,httpOptions).subscribe((data)=>{ 
+            
+        });
+        sessionStorage.setItem("Cart",null);
       }
       }
       else

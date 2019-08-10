@@ -80,7 +80,6 @@ export class PaymentStatusComponent implements OnInit {
         //on success add order in purchase table as successful order placed.
         let urlpath = "https://demoangularapp.gear.host/api/Book/" + "AddOrder";
         let bookcart  = sessionStorage.getItem("Cart"); 
-        console.log("bookcart"+bookcart);
         this.bookCart = JSON.parse(bookcart);
         
         this.http.post(urlpath,this.bookCart,httpOptions).subscribe((data)=>{ 

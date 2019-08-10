@@ -7,17 +7,21 @@
 <dx-data-grid id="gridContainer" [showBorders]="true" [dataSource]="books"  [remoteOperations]="true" [showColumnLines]="true" 
 [showRowLines]="false" [columnAutoWidth]="true" (onRowPrepared)="editorPreparing($event)">
 <dxo-editing mode="row" [allowUpdating]="true" [useIcons]="true"></dxo-editing>
-    <dxi-column dataField="BookName"  [width]="16+'%'"></dxi-column>
-    <dxi-column dataField="BookAuthor"  [width]="16+'%'"></dxi-column>
-    <dxi-column dataField="Description"  [width]="20+'%'"></dxi-column>
-    <dxi-column dataField="stock"  [width]="08+'%'"></dxi-column>
-    <dxi-column dataField="BookPrice" [width]="12+'%'"></dxi-column>
-    <dxi-column type="buttons" [width]="08+'%'" caption="Add">
+    <dxi-column dataField="BookName"></dxi-column>
+    <dxi-column dataField="BookAuthor"></dxi-column>
+    <dxi-column dataField="Description" cellTemplate="cellTemplate"></dxi-column>
+    <dxi-column dataField="stock"></dxi-column>
+    <dxi-column dataField="BookPrice"></dxi-column>
+    <dxi-column type="buttons" caption="Add">
         <dxi-button name="Add" [onClick]="onAddClick" icon="plus" hint="Add"></dxi-button>
     </dxi-column>
-    <dxi-column type="buttons" [width]="08+'%'" caption="Remove">
+    <dxi-column type="buttons" caption="Remove">
         <dxi-button name="Remove" [onClick]="onRemoveClick" icon="fa fa-minus" hint="Remove"></dxi-button>
     </dxi-column>
+
+    <div *dxTemplate="let data of 'cellTemplate'">
+        <textarea readonly>{{data.value}}</textarea>
+    </div>
 </dx-data-grid>
 </div>
 </div>

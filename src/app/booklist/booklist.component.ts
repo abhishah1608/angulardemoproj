@@ -124,7 +124,6 @@ export class BooklistComponent implements OnInit {
 
   editorPreparing(e:any)
   {
-    console.log("e:"+ e.rowElement);
     if(e.dataField === "Description") {
          e.editorName = "dxTextArea";
       }

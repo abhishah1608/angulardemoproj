@@ -21,15 +21,22 @@ export class BooklistComponent implements OnInit {
   
   constructor(private apiservice:BookapiService, private session:SessiontimeoutService) { 
     this.bookCart = new BookAddedInCart();
-    if(sessionStorage.getItem("Cart") == undefined)
+    if(sessionStorage.getItem("Cart") == undefined || sessionStorage.getItem("Cart") == null)
     {
     this.bookCart.detail = [];
     this.bookCart.Amount = 0;
     }
     else
     {
-      this.bookstring  = sessionStorage.getItem("Cart"); 
-      this.bookCart = JSON.parse(this.bookstring);
+      this.bookstring  = sessionStorage.getItem("Cart");
+      this.bookCart = JSON.parse(this.bookstring); 
+    }
+    //if null then init again.
+    if(this.bookCart == null)
+    {
+      this.bookCart = new BookAddedInCart();
+      this.bookCart.detail = [];
+      this.bookCart.Amount = 0;
     }
     this.bookCart.UserId = Number(sessionStorage.getItem("UserId"));
     this.bookCart.LoginId = Number(sessionStorage.getItem("sessionId"));

@@ -1,4 +1,4 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from  "@angular/common/http";
 import {MatDialog,MatDialogConfig} from '@angular/material';
 
@@ -15,7 +15,6 @@ import { GlobalService } from './global.service';
 })
 export class LoginService implements OnInit{
   
-
   url : string;
 
   constructor(private httpclient: HttpClient,private global:GlobalService,private dialog:MatDialog,private config:MatDialogConfig,private router:Router,private route:ActivatedRoute) { 

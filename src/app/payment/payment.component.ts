@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import {PaymentForm} from '../payment-form';
 import { FormGroup, FormBuilder,FormControlName, Validators } from '@angular/forms';
 import { BookAddedInCart } from '../book-added-in-cart';
@@ -9,7 +9,7 @@ import {PaymentService} from '../payment.service';
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })
-export class PaymentComponent implements OnInit {
+export class PaymentComponent implements OnInit, OnDestroy {
 
   bookCart : BookAddedInCart;
 
@@ -20,6 +20,8 @@ export class PaymentComponent implements OnInit {
   formobj : PaymentForm;
 
   errorMessage = '';
+
+  paymentserviceobj : any;
 
   constructor(public fb:FormBuilder, public paymentservice:PaymentService) { 
     let bookcart  = sessionStorage.getItem("Cart"); 
@@ -81,7 +83,7 @@ export class PaymentComponent implements OnInit {
         
         this.formobj.loginId = +sessionStorage.getItem("sessionId");
         
-        this.paymentservice.Generateform(this.formobj).subscribe((formobj)=>{
+        this.paymentserviceobj = this.paymentservice.Generateform(this.formobj).subscribe((formobj)=>{
           
             var form = document.createElement('form');
             form.setAttribute('action',formobj.url);
@@ -280,5 +282,13 @@ export class PaymentComponent implements OnInit {
 
   removeMessage() {
     this.errorMessage = '';
+  }
+
+  ngOnDestroy(): void {
+
+    if(this.paymentserviceobj)
+    {
+        this.paymentserviceobj.unsubscribe();
+    }
   }
 }

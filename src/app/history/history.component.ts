@@ -1,21 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserAddClass } from '../user-add-class';
 import { HistoryInfo } from '../history-info';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
-export class HistoryComponent implements OnInit {
-
-  url : string = "https://demoangularapp.gear.host/api/History/";
+export class HistoryComponent implements OnInit, OnDestroy {
+  
+  url : string = this.global.baseurlservice + "History/";
 
   historyinfo : HistoryInfo = null;
 
-  constructor(private httpclient: HttpClient) { }
+  historyserviceobj : any;
 
+  constructor(private httpclient: HttpClient,private global : GlobalService) { }
 
 
   ngOnInit() {
@@ -36,11 +38,18 @@ export class HistoryComponent implements OnInit {
       'Access-Control-Allow-Headers': '*'})
     };
 
-    this.httpclient.post(apiurl,user,httpOptions).subscribe((data)=>{ 
+    this.historyserviceobj = this.httpclient.post(apiurl,user,httpOptions).subscribe((data)=>{ 
         this.historyinfo = data as HistoryInfo; 
         
     });
 
   }
 
+  //unsubsribe observables.
+  ngOnDestroy(): void {
+      if(this.historyserviceobj)
+      {
+        this.historyserviceobj.unsubscribe();
+      }
+  }
 }

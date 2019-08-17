@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from  "@angular/common/http";
 import {MatDialog,MatDialogConfig} from '@angular/material';
 
@@ -7,30 +7,35 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserDetail } from './user-detail';
 import {ConfirmdialogComponent} from './confirmdialog/confirmdialog.component';
 import { UserAddClass } from './user-add-class';
+import { GlobalService } from './global.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-
-  url : string = "https://demoangularapp.gear.host/api/Login/";
-
-  constructor(private httpclient: HttpClient,private dialog:MatDialog,private config:MatDialogConfig,private router:Router,private route:ActivatedRoute) { }
-
+export class LoginService implements OnInit{
   
+
+  url : string;
+
+  constructor(private httpclient: HttpClient,private global:GlobalService,private dialog:MatDialog,private config:MatDialogConfig,private router:Router,private route:ActivatedRoute) { 
+    this.url = this.global.baseurlservice + "Login/";
+  }
+
+  ngOnInit(): void {
+    
+  }    
 
   IsuserAllowTologgedIn(login:LoginModel): boolean {
     var bRetval : boolean = false;
-    let urlpath = this.url + "IsUserloggedIn";    
+    let urlpath = this.url + "IsUserloggedIn";      
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Accept': 'application/json',
       'Access-Control-Allow-Methods': '*',
       'Access-Control-Allow-Headers': '*'})
-    };
-
+    }; 
     this.httpclient.post(urlpath,login,httpOptions).subscribe((data)=>{
         let userdetail : UserDetail = new UserDetail();
         userdetail.username = login.username;
@@ -161,6 +166,4 @@ export class LoginService {
     });
     return  bRetval;
   }
-  
-   
 }

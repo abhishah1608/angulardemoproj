@@ -3,15 +3,16 @@ import { PaymentForm } from './payment-form';
 import { Observable } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { PaymentInfo } from './payment-info';
+import { GlobalService } from './global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PaymentService {
 
-  url : string = "https://demoangularapp.gear.host/api/Payment/";
+  url : string =  this.global.baseurlservice + "Payment/";
 
-  constructor(private httpclient: HttpClient) { }
+  constructor(private httpclient: HttpClient,private global: GlobalService) { }
 
   Generateform(payment:PaymentForm) : Observable<PaymentForm>{
     

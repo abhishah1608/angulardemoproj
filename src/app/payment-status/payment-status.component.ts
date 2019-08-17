@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentService } from '../payment.service';
 import { BookDetails } from '../book-details';
@@ -6,14 +6,15 @@ import { PaymentInfo } from '../payment-info';
 import { SendEmail } from '../send-email';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BookAddedInCart } from '../book-added-in-cart';
+import { GlobalService } from '../global.service';
 
 @Component({
   selector: 'app-payment-status',
   templateUrl: './payment-status.component.html',
   styleUrls: ['./payment-status.component.css']
 })
-export class PaymentStatusComponent implements OnInit {
-
+export class PaymentStatusComponent implements OnInit, OnDestroy {
+ 
   payumoneyId : number; 
 
   Bookdetail : BookDetails[];
@@ -28,15 +29,15 @@ export class PaymentStatusComponent implements OnInit {
 
   bookCart : BookAddedInCart;
 
-  constructor(private route: ActivatedRoute, private paymentservice:PaymentService,private http:HttpClient) { 
+  emailserviceobj : any;
+
+  addorderserviceobj : any;
+
+  constructor(private route: ActivatedRoute, private paymentservice:PaymentService,private http:HttpClient,private global: GlobalService) { 
     
   }
 
   ngOnInit() {
-
-     
-    
-
     this.payumoneyId = +this.route.snapshot.paramMap.get("PayuMoneyId");
         
     this.paymentservice.GetPaymentStatus(this.payumoneyId).subscribe((data)=>{
@@ -63,7 +64,7 @@ export class PaymentStatusComponent implements OnInit {
         };
         let email : SendEmail = new SendEmail();
         email.From = "abhishah1608@gmail.com";
-        email.password="krishna123@.";
+        email.password="abhishah123@.";
         email.Subject= "Your Order has been Successfully placed for Books from Bookstore with OrderId  " + d.OrderId;
         let body = sessionStorage.getItem("body");
         if(this.amount != undefined && this.amount != null)
@@ -72,17 +73,17 @@ export class PaymentStatusComponent implements OnInit {
         email.body = body;
         email.To = sessionStorage.getItem("email");
         email.OrderId = d.OrderId;
-        let urladdress = "https://demoangularapp.gear.host/api/Email/SendEmail";
+        let urladdress = this.global.baseurlservice + "Email/SendEmail";
          
-        this.http.post(urladdress,email,httpOptions).subscribe((data1)=>{
+        this.emailserviceobj = this.http.post(urladdress,email,httpOptions).subscribe((data1)=>{
             
         });
         //on success add order in purchase table as successful order placed.
-        let urlpath = "https://demoangularapp.gear.host/api/Book/" + "AddOrder";
+        let urlpath = this.global.baseurlservice + "Book/" + "AddOrder";
         let bookcart  = sessionStorage.getItem("Cart"); 
         this.bookCart = JSON.parse(bookcart);
         
-        this.http.post(urlpath,this.bookCart,httpOptions).subscribe((data)=>{ 
+       this.addorderserviceobj = this.http.post(urlpath,this.bookCart,httpOptions).subscribe((data)=>{ 
             
         });
         sessionStorage.setItem("Cart",null);
@@ -98,4 +99,15 @@ export class PaymentStatusComponent implements OnInit {
 
   }
 
+  //to unsubscribe observables.
+  ngOnDestroy(): void {
+       if(this.addorderserviceobj)
+       {
+         this.addorderserviceobj.unsubscribe();
+       }
+       if(this.emailserviceobj)
+       {
+         this.emailserviceobj.unsubscribe();
+       }
+  }
 }

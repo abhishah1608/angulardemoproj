@@ -3,6 +3,7 @@ import {FormGroup, Validators, FormBuilder, AbstractControl} from '@angular/form
 import {LoginModel} from '../app/login-model';
 import { LoginService } from './login.service';
 import { UserDetail } from './user-detail';
+import { GlobalService } from './global.service';
 
 
 @Component({
@@ -72,14 +73,11 @@ export class AppComponent implements OnInit{
     }
   };
 
-  constructor(private fb:FormBuilder,private loginservice : LoginService)
+  constructor(private fb:FormBuilder,private global: GlobalService,private loginservice : LoginService)
   {
-
   }
   
   ngOnInit(): void {
-    
-
     this.UserSignUp = this.fb.group({
       SignUpUsername : ['',[Validators.required,Validators.maxLength(20),Validators.minLength(6)]],
       SignUpEmail : ['',[Validators.required,Validators.minLength(8),Validators.maxLength(100)]],
@@ -198,6 +196,5 @@ export class AppComponent implements OnInit{
       }
       return haserror;
   }
-
 }
 

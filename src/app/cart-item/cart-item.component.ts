@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { BookAddedInCart } from '../book-added-in-cart';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 
@@ -9,8 +8,8 @@ import { Router } from '@angular/router';
   templateUrl: './cart-item.component.html',
   styleUrls: ['./cart-item.component.css']
 })
-export class CartItemComponent implements OnInit {
-
+export class CartItemComponent implements OnInit, OnDestroy {
+  
   bookCart : BookAddedInCart;
 
   bindvalue : string = null;
@@ -19,11 +18,11 @@ export class CartItemComponent implements OnInit {
     currencysymbol : "₹", 
   }
 
-  url : string = "https://demoangularapp.gear.host/api/Book/";
+
 
   dataAdapter: any;
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private router:Router) { }
   source: any  = null;
   
 
@@ -85,4 +84,9 @@ export class CartItemComponent implements OnInit {
     [
         { text: 'Cart Details', align: 'center', name: 'BookDetails' }
     ];
+
+    //on Destroy unsubsribe .
+    ngOnDestroy(): void {
+      
+    }
 }

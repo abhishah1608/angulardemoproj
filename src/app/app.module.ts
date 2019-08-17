@@ -33,6 +33,7 @@ import { AlphabetonlyDirective } from './alphabetonly.directive';
 import { HistoryComponent } from './history/history.component';
 
 
+
 const appRoutes : Routes = [ 
       {path:'login', component: AppComponent},
       {

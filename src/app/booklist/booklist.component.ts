@@ -31,7 +31,7 @@ export class BooklistComponent implements OnInit {
       this.bookstring  = sessionStorage.getItem("Cart");
       this.bookCart = JSON.parse(this.bookstring); 
     }
-    //if null then init again.
+    //if null then init again with.
     if(this.bookCart == null)
     {
       this.bookCart = new BookAddedInCart();

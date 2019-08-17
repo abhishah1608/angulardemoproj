@@ -8,7 +8,7 @@ export class GlobalService implements OnInit{
   baseurlservice : string;
   constructor() { 
     //this.baseurlservice = "http://localhost:54701/api/";
-    //api for url.
+    //api for url service.
     this.baseurlservice = "https://demoangularapp.gear.host/api/";        
   }
 

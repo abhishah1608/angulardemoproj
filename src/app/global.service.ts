@@ -9,6 +9,7 @@ export class GlobalService implements OnInit{
   constructor() { 
     //this.baseurlservice = "http://localhost:54701/api/";
     //api for url service.
+    //url for Web Api developed in Asp.net. 
     this.baseurlservice = "https://demoangularapp.gear.host/api/";        
   }
 
